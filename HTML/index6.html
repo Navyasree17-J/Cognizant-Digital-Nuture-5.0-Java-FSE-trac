@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    
+    <style>
+        section {
+            padding: 40px 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+        #welcomeBanner {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #1565c0;
+            border-radius: 4px;
+        }
+        .highlight {
+            background-color: #fffde7;
+            font-weight: bold;
+            padding: 2px 6px;
+            border: 1px dashed #fbc02d;
+        }
+
+        /* --- EXERCISE 7 VIDEO STYLING --- */
+        .video-container {
+            margin: 20px 0;
+            max-width: 560px;
+            width: 100%;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background-color: #000;
+        }
+        .video-status {
+            font-size: 0.85rem;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* GALLERY GRAPHICS STYLING */
+        .event-gallery {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .event-gallery td {
+            padding: 15px;
+            text-align: center;
+            vertical-align: top;
+            width: 33.33%;
+        }
+        .gallery-img {
+            max-width: 250px;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .enlarged {
+            transform: scale(1.25);
+            border-color: #2e7d32;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* FORM FIELD STYLING */
+        .form-container {
+            max-width: 500px;
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            border-color: #1565c0;
+            outline: none;
+        }
+        .submit-btn {
+            background-color: #1565c0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background-color: #0d47a1;
+        }
+        .conf-msg {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+            font-weight: bold;
+        }
+
+        /* LIVE FEEDBACK ELEMENT STYLING */
+        .error-text {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        .fee-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            background-color: #e1f5fe;
+            color: #0288d1;
+            font-weight: bold;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home">Home</a> | 
+            <a href="#events">Events</a> | 
+            <a href="#register">Register</a> |
+            <a href="#contact">Contact</a> |
+            <a href="help.html" target="_blank">Help & FAQ</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="welcomeBanner">
+            <h2>Hello, Resident! 👋</h2>
+            <p><span style="color: red; font-weight: bold;">Special Offer:</span> Register today!</p>
+        </div>
+
+        <section id="home">
+            <h1>Welcome to the Community Portal</h1>
+            <p>Your one-stop shop for local <span class="highlight">city council updates</span>.</p>
+            
+            <h3>City Development Promo Invite</h3>
+            <div class="video-container">
+                <video id="promoVideo" controls oncanplay="handleVideoReady()">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="videoStatus" class="video-status">⏳ Buffering promo file data...</div>
+            </div>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events & Past Highlights</h2>
+            <p class="highlight">Tip: Double-click on any image to enlarge/minimize it!</p>
+            <table class="event-gallery">
+                <tr>
+                    <td>
+                        <img src="https://picsum.photos/id/102/300/200" alt="Park clean up" title="Annual Park Clean-up" class="gallery-img" ondblclick="toggleImageZoom(this)">
+                        <br><span>Annual Park Clean-up</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/292/300/200" alt="Farmers market" title="Farmers Market" class="gallery-img" ondblclick="toggleImageZoom(this)">
+                        <br><span>Weekly Farmers Market</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/158/300/200" alt="Music Fest" title="Music Fest" class="gallery-img" ondblclick="toggleImageZoom(this)">
+                        <br><span>Summer Music Festival</span>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="register">
+            <h2>Event Registration Form</h2>
+            <div class="form-container">
+                <form id="registrationForm" onsubmit="handleFormSubmit(event)">
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="e.g., John Doe" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number (10 Digits):</label>
+                        <input type="tel" id="userPhone" class="form-control" placeholder="9876543210" required onblur="validatePhoneNumber(this)">
+                        <div id="phoneError" class="error-text">❌ Please enter a valid 10-digit phone number.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userEmail">Email Address:</label>
+                        <input type="email" id="userEmail" class="form-control" placeholder="username@domain.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDate">Preferred Date:</label>
+                        <input type="date" id="eventDate" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventType">Select Event Type:</label>
+                        <select id="eventType" class="form-control" required onchange="calculateEventFee(this)">
+                            <option value="">-- Choose an Event --</option>
+                            <option value="0">Annual Park Clean-up ($0)</option>
+                            <option value="5">Weekly Farmers Market ($5)</option>
+                            <option value="25">Summer Music Festival ($25)</option>
+                        </select>
+                        <div id="feeBadge" class="fee-badge" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userMessage">Additional Details:</label>
+                        <textarea id="userMessage" class="form-control" rows="4" placeholder="Type instructions here..." oninput="updateCharacterCount(this)"></textarea>
+                        <div id="counterContainer" class="char-counter">0 / 150 characters</div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" onclick="logSubmitAttempt()">Register Now</button>
+                    
+                    <output id="formConfirmation" class="conf-msg" style="display: none;"></output>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to the city administration department.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local City Council. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Track whether the user has modified form fields (for Exercise 7 window monitoring)
+        let visualFormIsDirty = false;
+
+        // Automatically set tracking flag to true if a user changes any field data
+        document.getElementById('registrationForm').addEventListener('input', function() {
+            visualFormIsDirty = true;
+        });
+
+        // 1. EXERCISE 7: ONBEFOREUNLOAD EVENT (Triggers when trying to close/refresh tab)
+        window.onbeforeunload = function (event) {
+            if (visualFormIsDirty) {
+                // Modern browsers require setting a standard placeholder confirmation event return string
+                const confirmationMessage = 'You have unsaved form registration shifts. If you leave, data will be lost.';
+                (event || window.event).returnValue = confirmationMessage; 
+                return confirmationMessage; 
+            }
+        };
+
+        // 2. EXERCISE 7: ONCANPLAY MEDIA EVENT (Fires when enough buffer data exists to stream)
+        function handleVideoReady() {
+            const statusBox = document.getElementById('videoStatus');
+            statusBox.innerText = "✅ Promo Video ready to play!";
+            statusBox.style.color = "#2e7d32";
+        }
+
+        // 3. Exercise 6 - ONBLUR Field Validation
+        function validatePhoneNumber(inputField) {
+            const phoneValue = inputField.value.trim();
+            const errorAlert = document.getElementById('phoneError');
+            const phoneRegex = /^[0-9]{10}$/;
+            
+            if (!phoneRegex.test(phoneValue) && phoneValue !== "") {
+                errorAlert.style.display = 'block';
+                inputField.style.borderColor = '#d32f2f';
+            } else {
+                errorAlert.style.display = 'none';
+                inputField.style.borderColor = '#ccc';
+            }
+        }
+
+        // 4. Exercise 6 - ONCHANGE Select Evaluator
+        function calculateEventFee(dropdown) {
+            const selectedFee = dropdown.value;
+            const feeBadge = document.getElementById('feeBadge');
+            
+            if (selectedFee !== "") {
+                feeBadge.innerText = `Calculated Fee: $${selectedFee}`;
+                feeBadge.style.display = 'inline-block';
+            } else {
+                feeBadge.style.display = 'none';
+            }
+        }
+
+        // 5. Exercise 6 - ONINPUT String Counter
+        function updateCharacterCount(textarea) {
+            const currentLength = textarea.value.length;
+            const counterContainer = document.getElementById('counterContainer');
+            counterContainer.innerText = `${currentLength} / 150 characters`;
+            counterContainer.style.color = currentLength > 150 ? '#d32f2f' : '#666';
+        }
+
+        // 6. Exercise 6 - ONDBLCLICK Grid Node Zoom
+        function toggleImageZoom(imageElement) {
+            imageElement.classList.toggle('enlarged');
+        }
+
+        function logSubmitAttempt() {
+            console.log("Submit execution parsed.");
+        }
+
+        // Form Submission Execution
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+            
+            // Turn off dirty checking warning because the user successfully submitted the data
+            visualFormIsDirty = false; 
+            
+            const name = document.getElementById('fullName').value;
+            const eventSelect = document.getElementById('eventType');
+            const selectedText = eventSelect.options[eventSelect.selectedIndex].text;
+            
+            const outputElement = document.getElementById('formConfirmation');
+            outputElement.innerHTML = `🎉 Thank you, ${name}! Your registration for "${selectedText}" is confirmed.`;
+            outputElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

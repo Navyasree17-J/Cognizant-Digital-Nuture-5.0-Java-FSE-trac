@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <style>
+        /* Base layout spacing */
+        section {
+            padding: 40px 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        /* --- EXERCISE 3 CSS STYLING --- */
+        #welcomeBanner {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #1565c0;
+            border-radius: 4px;
+        }
+        .highlight {
+            background-color: #fffde7;
+            font-weight: bold;
+            padding: 2px 6px;
+            border: 1px dashed #fbc02d;
+        }
+
+        /* --- EXERCISE 4 CSS STYLING --- */
+        /* Center and style the table layout */
+        .event-gallery {
+            width: 100%;
+            border-collapse: collapse; /* Removes double borders between table cells */
+            margin-top: 15px;
+        }
+        
+        .event-gallery td {
+            padding: 15px;
+            text-align: center;
+            vertical-align: top;
+            width: 33.33%; /* Creates 3 perfectly equal columns */
+        }
+
+        /* Responsive image styling with custom class */
+        .gallery-img {
+            width: 100%;
+            max-width: 250px;
+            height: 150px;
+            object-fit: cover; /* Prevents image squishing/stretching */
+            border: 4px solid #333;
+            border-radius: 8px;
+            box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+
+        /* Quick interactive hover effect */
+        .gallery-img:hover {
+            transform: scale(1.05);
+            border-color: #1565c0;
+        }
+
+        .gallery-caption {
+            display: block;
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home">Home</a> | 
+            <a href="#events">Events</a> | 
+            <a href="#contact">Contact</a> |
+            <a href="help.html" target="_blank">Help & FAQ</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <div id="welcomeBanner">
+            <h2>Hello, Resident! 👋</h2>
+            <p>You are successfully logged in. 
+               <span style="color: red; font-weight: bold;">Special Offer:</span> 
+               Register for any event today and get free parking!
+            </p>
+        </div>
+
+        <section id="home">
+            <h1>Welcome to the Community Portal</h1>
+            <p>Your one-stop shop for local <span class="highlight">city council updates</span> and registration.</p>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events & Past Highlights</h2>
+            <p>Discover exciting <span class="highlight">local activities</span> happening around the city this month.</p>
+            
+            <table class="event-gallery">
+                <tr>
+                    <td>
+                        <img src="https://picsum.photos/id/102/300/200" alt="Green community park clean up initiative" title="Annual Park Clean-up" class="gallery-img">
+                        <span class="gallery-caption">Annual Park Clean-up</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/292/300/200" alt="Fresh tomatoes and fruits at local market" title="Farmers Market" class="gallery-img">
+                        <span class="gallery-caption">Weekly Farmers Market</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/158/300/200" alt="Live music performance on outdoor stage" title="Music Fest" class="gallery-img">
+                        <span class="gallery-caption">Summer Music Festival</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://picsum.photos/id/447/300/200" alt="Marathon runners at the starting line" title="City Marathon" class="gallery-img">
+                        <span class="gallery-caption">Charity Marathon Run</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/486/300/200" alt="Children participating in outdoor art workshop" title="Kids Craft Day" class="gallery-img">
+                        <span class="gallery-caption">Kids Arts & Crafts Workshop</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/319/300/200" alt="Group of senior citizens using laptops in class" title="Tech Drive for Seniors" class="gallery-img">
+                        <span class="gallery-caption">Senior Tech Training Drive</span>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to the city administration department.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local City Council. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
