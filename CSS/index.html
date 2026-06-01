@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home">Home</a> | 
+            <a href="#events">Events</a> | 
+            <a href="#register">Register</a> |
+            <a href="#contact">Contact</a> |
+            <a href="help.html" target="_blank">Help & FAQ</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="welcomeBanner">
+            <h2>Hello, Resident! 👋</h2>
+            <p><span style="color: red; font-weight: bold;">Special Offer:</span> Register today!</p> [cite: 22]
+        </div>
+
+        <section id="home">
+            <h1 style="color: #e53935;">Welcome to the Community Portal</h1> [cite: 78]
+            <p>Your one-stop shop for local <span class="highlight">city council updates</span>.</p> [cite: 23]
+            
+            <h3>Find Nearest Event Hub</h3>
+            <div class="geo-container">
+                <p>Allow location access to scan and unlock neighborhood gathering coordinates instantly.</p>
+                <button type="button" class="geo-btn" onclick="locateUserEventCenter()">📍 Find Nearby Events</button>
+                <div id="locationResult" class="geo-display"></div>
+            </div>
+
+            <h3>City Development Promo Invite</h3>
+            <div class="video-container">
+                <video id="promoVideo" controls oncanplay="handleVideoReady()">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="videoStatus" class="video-status">⏳ Buffering promo file data...</div>
+            </div>
+        </section>
+
+        <section id="events">
+            <h2>Upcoming Events & Past Highlights</h2>
+            <p class="highlight">Tip: Double-click on any image to enlarge/minimize it!</p>
+            <table class="event-gallery">
+                <tr>
+                    <td>
+                        <img src="https://picsum.photos/id/102/300/200" alt="Park clean up" title="Annual Park Clean-up" class="gallery-img" ondblclick="toggleImageZoom(this)">
+                        <br><span>Annual Park Clean-up</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/292/300/200" alt="Farmers market" title="Farmers Market" class="gallery-img" ondblclick="toggleImageZoom(this)">
+                        <br><span>Weekly Farmers Market</span>
+                    </td>
+                    <td>
+                        <img src="https://picsum.photos/id/158/300/200" alt="Music Fest" title="Music Fest" class="gallery-img" ondblclick="toggleImageZoom(this)">
+                        <br><span>Summer Music Festival</span>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="register">
+            <h2>Event Registration Form</h2>
+            <div class="form-container">
+                <form id="registrationForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="e.g., John Doe" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number (10 Digits):</label>
+                        <input type="tel" id="userPhone" class="form-control" placeholder="9876543210" required onblur="validatePhoneNumber(this)">
+                        <div id="phoneError" class="error-text">❌ Please enter a valid 10-digit phone number.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email Address:</label>
+                        <input type="email" id="userEmail" class="form-control" placeholder="username@domain.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Preferred Date:</label>
+                        <input type="date" id="eventDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventType">Select Event Type:</label>
+                        <select id="eventType" class="form-control" required onchange="calculateEventFee(this)">
+                            <option value="">-- Choose an Event --</option>
+                            <option value="0">Annual Park Clean-up ($0)</option>
+                            <option value="5">Weekly Farmers Market ($5)</option>
+                            <option value="25">Summer Music Festival ($25)</option>
+                        </select>
+                        <div id="feeBadge" class="fee-badge" style="display: none;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userMessage">Additional Details:</label>
+                        <textarea id="userMessage" class="form-control" rows="4" placeholder="Type instructions here..." oninput="updateCharacterCount(this)"></textarea>
+                        <div id="counterContainer" class="char-counter">0 / 150 characters</div>
+                    </div>
+                    <button type="submit" class="submit-btn" onclick="logSubmitAttempt()">Register Now</button>
+                    <button type="button" class="clear-btn" onclick="clearUserPreferences()">Clear Cached Preferences</button>
+                    <output id="formConfirmation" class="conf-msg" style="display: none;"></output>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to the city administration department.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local City Council. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let visualFormIsDirty = false;
+
+        function logSubmitAttempt() {
+            console.log("Form submit button clicked. Initiating log validation sequence...");
+            try {
+                initializeSecretAnalyticsTrackerEngine(); 
+            } catch(e) {
+                console.error("Intentional Bug Caught for DevTools Demo:", e.message);
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+            visualFormIsDirty = false; 
+            const name = document.getElementById('fullName').value;
+            const eventSelect = document.getElementById('eventType');
+            const itemBasePrice = parseInt(eventSelect.value) || 0;
+            const processingTaxRate = 0.18;
+            const totalInvoicePaid = itemBasePrice + (itemBasePrice * processingTaxRate) + " rupees"; 
+            console.log(`Debug Checkpoint - Base: ${itemBasePrice}, Calculated Invoice: ${totalInvoicePaid}`);
+            const selectedText = eventSelect.options[eventSelect.selectedIndex].text;
+            const outputElement = document.getElementById('formConfirmation');
+            outputElement.innerHTML = `🎉 Thank you, ${name}! Your registration for "${selectedText}" is confirmed. Total Logged Value: ${totalInvoicePaid}`;
+            outputElement.style.display = 'block';
+        }
+
+        function locateUserEventCenter() {
+            const displayBox = document.getElementById('locationResult');
+            displayBox.style.display = 'block';
+            displayBox.style.borderColor = '#4e342e';
+            displayBox.innerHTML = "📡 Contacting network satellites for accurate triangulation...";
+            if (!navigator.geolocation) {
+                displayBox.innerHTML = "❌ Fail! Geolocation not supported.";
+                return;
+            }
+            const geoOptions = { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 };
+            navigator.geolocation.getCurrentPosition(geoSuccessCallback, geoErrorCallback, geoOptions);
+        }
+
+        function geoSuccessCallback(position) {
+            const lat = position.coords.latitude.toFixed(5);
+            const lon = position.coords.longitude.toFixed(5);
+            document.getElementById('locationResult').innerHTML = `🛰️ Coordinates Captured: ${lat}°, ${lon}°`;
+        }
+
+        function geoErrorCallback(error) {
+            document.getElementById('locationResult').innerHTML = "❌ Location retrieval failed.";
+        }
+
+        window.onload = function() {
+            const savedEventPreference = localStorage.getItem('preferredEventType');
+            if (savedEventPreference !== null) {
+                const eventDropdown = document.getElementById('eventType');
+                eventDropdown.value = savedEventPreference;
+                calculateEventFee(eventDropdown);
+            }
+        };
+
+        document.getElementById('registrationForm').addEventListener('input', function() {
+            visualFormIsDirty = true;
+        });
+
+        window.onbeforeunload = function (event) {
+            if (visualFormIsDirty) {
+                const message = 'You have unsaved changes.';
+                (event || window.event).returnValue = message; 
+                return message; 
+            }
+        };
+
+        function clearUserPreferences() {
+            localStorage.removeItem('preferredEventType');
+            sessionStorage.clear();
+            document.getElementById('eventType').value = "";
+            document.getElementById('feeBadge').style.display = "none";
+            alert("Storage pruned.");
+        }
+
+        function calculateEventFee(dropdown) {
+            const selectedFee = dropdown.value;
+            const feeBadge = document.getElementById('feeBadge');
+            if (selectedFee !== "") {
+                feeBadge.innerText = `Calculated Fee: $${selectedFee}`;
+                feeBadge.style.display = 'inline-block';
+                localStorage.setItem('preferredEventType', selectedFee);
+            } else {
+                feeBadge.style.display = 'none';
+            }
+        }
+
+        function handleVideoReady() {
+            document.getElementById('videoStatus').innerText = "✅ Promo Video ready to play!";
+        }
+
+        function validatePhoneNumber(inputField) {
+            const phoneValue = inputField.value.trim();
+            const errorAlert = document.getElementById('phoneError');
+            if (!/^[0-9]{10}$/.test(phoneValue) && phoneValue !== "") {
+                errorAlert.style.display = 'block';
+                inputField.style.borderColor = '#d32f2f';
+            } else {
+                errorAlert.style.display = 'none';
+                inputField.style.borderColor = '#ccc';
+            }
+        }
+
+        function updateCharacterCount(textarea) {
+            const currentLength = textarea.value.length;
+            const container = document.getElementById('counterContainer');
+            container.innerText = `${currentLength} / 150 characters`;
+        }
+
+        function toggleImageZoom(imageElement) {
+            imageElement.classList.toggle('enlarged');
+        }
+    </script>
+</body>
+</html>
