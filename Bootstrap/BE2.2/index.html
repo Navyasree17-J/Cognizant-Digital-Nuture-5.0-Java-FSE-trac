@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Local Structure - Exercise 2.2</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light text-dark">
+
+    <div class="container my-5">
+        <div class="p-5 text-center bg-white rounded-3 shadow-sm border">
+            <h1 class="text-success display-5 fw-bold">Exercise 2.2: Isolated JavaScript Engine</h1>
+            <p class="lead text-secondary mt-3">
+                This file runs independently inside its own folder. It uses local files to handle styling and interactive behaviors.
+            </p>
+            
+            <div class="dropdown mt-4">
+                <button class="btn btn-success dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Test Local Dropdown Component
+                </button>
+                <ul class="dropdown-menu shadow">
+                    <li><a class="dropdown-item px-3 py-2 text-decoration-none d-block text-dark" href="#">Option Item Alpha</a></li>
+                    <li><a class="dropdown-item px-3 py-2 text-decoration-none d-block text-dark" href="#">Option Item Beta</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
