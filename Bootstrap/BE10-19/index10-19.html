@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Portal Master Dashboard - Exercises 10-19</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <style>
+        .custom-sass-card {
+            border-radius: 0.5rem !important; /* Maps to customized _variables.scss overrides */
+        }
+        .badge-overlay-container {
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-light text-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-success" href="#">🌱 CommunityHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Events Portal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Analytics Hub</a></li>
+                </ul>
+                <form class="d-flex" role="search" id="navbarSearchForm">
+                    <input class="form-control me-2 form-control-sm" type="search" placeholder="Search portal nodes..." aria-label="Search">
+                    <button class="btn btn-outline-success btn-sm" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        
+        <header class="p-5 mb-5 text-white bg-dark bg-gradient custom-sass-card shadow rounded-3 text-center">
+            <h1 class="display-3 fw-bold text-uppercase">Portal Management Console</h1>
+            <p class="lead text-muted">Consolidated Exercise Engine Hub covering architectural specifications 10 through 19.</p>
+            <span class="badge bg-warning text-dark fw-bold text-capitalize px-3 py-2">Telemetry Node: Active Verification Verified</span>
+        </header>
+
+        <div class="mb-4">
+            <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overviewContent" type="button" role="tab">Overview Summary</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="components-tab" data-bs-toggle="tab" data-bs-target="#componentsContent" type="button" role="tab">Interactive Components Node</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="dashboardTabsContent">
+            
+            <div class="tab-pane fade show active" id="overviewContent" role="tabpanel" aria-labelledby="overview-tab">
+                <div class="row g-4">
+                    
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm custom-sass-card">
+                            <div class="badge-overlay-container position-relative">
+                                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=60" class="card-img-top" alt="Event Banner">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger shadow-sm">CRITICAL FEED</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold text-primary">Profile Insights Engine</h5>
+                                <p class="card-text text-secondary small">This card tracks core metrics while demonstrating advanced asset stacking layout pipelines.</p>
+                                
+                                <div class="d-flex align-items-start mt-3 pt-3 border-top">
+                                    <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3 font-monospace fw-bold" style="width: 40px; height: 40px; min-width: 40px;">U1</div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 small">System Administrator</h6>
+                                        <p class="text-muted small mb-0">Core parameters initialized correctly.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-8">
+                        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                            <h4 class="fw-bold text-dark">Responsive Data Matrix Visibility Feed</h4>
+                            <p class="text-muted small">The alerts below flash selectively based entirely on the target display monitor resolution parameters:</p>
+                            
+                            <div class="alert alert-info d-none d-md-block">
+                                🖥️ <strong>Tablet & Desktop Notice:</strong> This configuration block is set to <code>d-none d-md-block</code>. It hides automatically on mobile viewports.
+                            </div>
+
+                            <div class="alert alert-warning d-block d-md-none">
+                                📱 <strong>Mobile Viewport Alert:</strong> This alert contains class rules <code>d-block d-md-none</code>. You are viewing this on a compact display layout screen.
+                            </div>
+                            
+                            <div class="p-3 bg-light border rounded custom-sass-card d-none d-lg-block mt-4">
+                                <h6 class="fw-bold text-success-emphasis">⚡ Desktop-Exclusive Telemetry Sidebar Sidebar Mode</h6>
+                                <p class="mb-0 small text-muted">This panel maps to <code>d-none d-lg-block</code>. It acts as an advanced technical readout panel that automatically hides itself on tablet and phone screens to save horizontal grid space.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="componentsContent" role="tabpanel" aria-labelledby="components-tab">
+                <div class="row g-4">
+                    
+                    <div class="col-12 col-lg-6">
+                        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                            <h4 class="fw-bold text-dark mb-3">18.1: JavaScript Modal Interface Engine</h4>
+                            <p class="text-muted small">Trigger an interactive system modal overlay layer using Bootstrap's native target data attributes.</p>
+                            
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#portalCoreModal">
+                                Launch Operational System Modal
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                            <h4 class="fw-bold text-dark mb-3">18.2: Dynamic Accordion Collapsible System</h4>
+                            
+                            <div class="accordion" id="portalCoreAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            System Parameters Group Alpha
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#portalCoreAccordion">
+                                        <div class="accordion-body small text-secondary">
+                                            This collapsible panel content updates layout states dynamically using built-in Bootstrap JavaScript handlers.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            System Parameters Group Beta
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#portalCoreAccordion">
+                                        <div class="accordion-body small text-secondary">
+                                            Expanding this section automatically collapses the previous section item to optimize viewport scanning workflows.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-100 bg-dark text-white text-center py-3 position-fixed bottom-0 left-0 border-top border-secondary border-opacity-50">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="small font-monospace text-white-50">System Status: Master Workspace Operational</span>
+            
+            <div class="d-flex gap-3">
+                <a href="#" class="text-white text-decoration-none" title="Twitter Handle Integration">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.056-4.425 5.056H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>
+                </a>
+                <a href="#" class="text-white text-decoration-none" title="GitHub Infrastructure Integration">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="portalCoreModal" tabindex="-1" aria-labelledby="portalCoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold" id="portalCoreModalLabel">🔒 Core Telemetry Status Verified</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-disable="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-secondary small">
+                    This pop-up overlay window was generated instantly by Bootstrap's built-in JavaScript engine wrapper files. It blocks background page scrolling until closed or dismissed.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Dismiss Node</button>
+                    <button type="button" class="btn btn-success btn-sm" onclick="alert('Action state tracked.')">Confirm Metrics</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
