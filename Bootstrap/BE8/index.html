@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Forms & DOM Styling - Exercise 8</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        /* Custom highlight rule used by our advanced JavaScript logic engine */
+        .interactive-highlight {
+            border: 2px solid #0d6efd !important;
+            background-color: rgba(13, 110, 253, 0.04) !important;
+            box-shadow: 0 0 15px rgba(13, 110, 253, 0.2) !important;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-light text-dark">
+
+    <div class="container my-5">
+        
+        <header class="text-center mb-5">
+            <h1 class="text-primary fw-bold">Exercise 8: Advanced Form Component Hub</h1>
+            <p class="text-secondary lead">Implementing input groups, floating layouts, and programmatic dynamic DOM styling injectors.</p>
+        </header>
+
+        <div class="row g-5">
+            
+            <div class="col-12 col-lg-7">
+                <div id="registrationContainer" class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                    <h2 class="h4 fw-bold text-dark mb-4">8.1: Community Membership Registration</h2>
+                    <form id="mainRegistrationForm">
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">Choose Portal Handle</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted" id="addon-username">@</span>
+                                <input type="text" class="form-control" placeholder="unique_handle" aria-describedby="addon-username" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="regEmail" class="form-label small fw-bold text-secondary">Secure Contact Email</label>
+                            <input type="email" class="form-control" id="regEmail" placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkNotify" checked>
+                                <label class="form-check-label small text-muted" href="#" for="checkNotify">
+                                    I agree to receive local community calendar alert feeds.
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="button" id="btnToggleHighlight" class="btn btn-outline-primary btn-sm fw-semibold">
+                            💡 DOM Test: Highlight Registration Box
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-5">
+                <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                    <h2 class="h4 fw-bold text-dark mb-4">8.2: Secure Account Sign-In</h2>
+                    <form id="loginForm">
+                        
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
+                            <label for="floatingEmail">Email Address</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                            <label for="floatingPassword">Account Password</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 fw-semibold">Sign In to Dashboard</button>
+                    </form>
+                    
+                    <div class="mt-4 pt-3 border-top">
+                        <h6 class="fw-bold text-secondary small uppercase mb-2">Live Session Logs:</h6>
+                        <ul id="logOutputList" class="list-group list-group-flush font-monospace small">
+                            <li class="list-group-item text-muted px-0 bg-transparent">Waiting for user actions...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

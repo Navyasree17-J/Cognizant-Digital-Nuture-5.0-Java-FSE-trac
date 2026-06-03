@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Buttons & Groups - Exercise 9</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light text-dark">
+
+    <div class="container my-5">
+        
+        <header class="text-center mb-5">
+            <h1 class="text-primary fw-bold">Exercise 9: Interactive Button System</h1>
+            <p class="text-secondary lead">Implementing semantic contextual button variants, button structural groups, and custom checkbox toggles.</p>
+        </header>
+
+        <div class="row g-4">
+            
+            <div class="col-12 col-xl-6">
+                <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                    <h2 class="h4 fw-bold text-dark mb-3">9.1: Semantic Contextual Buttons</h2>
+                    <p class="text-muted small">Click any solid or outline button theme component to pass its type rule down to the JS logging engine.</p>
+                    
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <button type="button" class="btn btn-primary log-btn" data-type="Solid Primary (Action)">Primary</button>
+                        <button type="button" class="btn btn-secondary log-btn" data-type="Solid Secondary (Neutral)">Secondary</button>
+                        <button type="button" class="btn btn-success log-btn" data-type="Solid Success (Confirm)">Success</button>
+                        <button type="button" class="btn btn-warning text-dark log-btn" data-type="Solid Warning (Alert)">Warning</button>
+                        <button type="button" class="btn btn-danger log-btn" data-type="Solid Danger (Delete)">Danger</button>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-outline-primary log-btn" data-type="Outline Primary">Primary Outline</button>
+                        <button type="button" class="btn btn-outline-success log-btn" data-type="Outline Success">Success Outline</button>
+                        <button type="button" class="btn btn-outline-warning log-btn" data-type="Outline Warning">Warning Outline</button>
+                        <button type="button" class="btn btn-outline-danger log-btn" data-type="Outline Danger">Danger Outline</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-xl-6">
+                <div class="p-4 bg-white border rounded-3 shadow-sm h-100">
+                    <h2 class="h4 fw-bold text-dark mb-3">9.2: Group Assemblies & Checkbox Toggles</h2>
+                    
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-secondary d-block">Dashboard Layout Filter View Group:</label>
+                        <div class="btn-group" role="group" aria-label="Basic filter selection group">
+                            <button type="button" class="btn btn-dark active filter-group-btn" data-view="Daily">Daily Feed</button>
+                            <button type="button" class="btn btn-dark filter-group-btn" data-view="Weekly">Weekly Digest</button>
+                            <button type="button" class="btn btn-dark filter-group-btn" data-view="Monthly">Monthly Analytics</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label small fw-bold text-secondary d-block">Toggle Subscription Access Nodes:</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            
+                            <input type="checkbox" class="btn-check toggle-node-input" id="toggleNewsletter" autocomplete="off" data-label="Newsletter Subscription">
+                            <label class="btn btn-outline-primary" for="toggleNewsletter">Email Newsletter</label>
+
+                            <input type="checkbox" class="btn-check toggle-node-input" id="toggleSMS" autocomplete="off" data-label="SMS Urgency Broadcasts">
+                            <label class="btn btn-outline-success" for="toggleSMS">SMS Push Alerts</label>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="p-4 bg-dark text-success-emphasis rounded-3 font-monospace shadow-sm">
+                    <h5 class="text-white h6 fw-bold border-bottom border-secondary pb-2 mb-3">⚡ Active Interface Monitoring Node:</h5>
+                    <div id="liveTelemetryOutput">> Waiting for user interactions with button nodes...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

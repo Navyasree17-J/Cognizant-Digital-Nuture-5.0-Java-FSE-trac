@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Objects and Forms - Exercise 7</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light text-dark">
+
+    <div class="container my-5">
+        
+        <header class="text-center mb-5">
+            <h1 class="text-primary fw-bold">Exercise 7: Media Layouts & Form Elements</h1>
+            <p class="text-secondary lead">Building interactive feedback elements connected to robust styled input fields.</p>
+        </header>
+
+        <div class="row g-5">
+            
+            <div class="col-12 col-lg-6">
+                <h2 class="h4 fw-bold text-dark mb-4">7.1: Media Object Avatar Layout</h2>
+                
+                <div class="p-4 bg-white border rounded-3 shadow-sm">
+                    <div class="d-flex align-items-start">
+                        
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3" style="width: 50px; height: 50px; min-width: 50px;">
+                            JD
+                        </div>
+                        
+                        <div>
+                            <h5 class="fw-bold mb-1 text-dark">Jane Doe <small class="text-muted fw-normal ms-2">2 hours ago</small></h5>
+                            <p class="text-secondary small mb-0">
+                                This event tracker interface layout looks incredibly intuitive! The responsive flexbox grid reflow shifts perfectly across my mobile test viewport panels. Count me in for the park clean-up next weekend.
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <h2 class="h4 fw-bold text-dark mb-4">7.2: Portal Registration Form</h2>
+                
+                <form id="portalRegistrationForm" class="p-4 bg-white border rounded-3 shadow-sm">
+                    
+                    <div class="mb-3">
+                        <label for="inputUsername" class="form-label small fw-bold text-secondary">Full Name</label>
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Enter your first and last name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label small fw-bold text-secondary">Email Address</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 fw-semibold">Submit Portal Registration</button>
+                    
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

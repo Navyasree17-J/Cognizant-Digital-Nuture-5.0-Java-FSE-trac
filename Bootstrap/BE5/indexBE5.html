@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Alignment & Reordering - Exercise 5</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light text-dark">
+
+    <div class="container my-5">
+        
+        <header class="text-center mb-5">
+            <h1 class="text-primary fw-bold">Exercise 5: Grid Alignment & Column Reordering</h1>
+            <p class="text-secondary lead">Mastering flexbox centring utilities and responsive structural layout shifting.</p>
+        </header>
+
+        <h2 class="h4 fw-bold text-dark mb-3">5.1: Flexbox Alignment (justify-content-center & align-items-center)</h2>
+        <div class="row justify-content-center align-items-center bg-white border rounded-3 shadow-sm mb-5" style="min-height: 250px;">
+            
+            <div class="col-12 col-md-6 text-center p-4">
+                <div class="p-4 bg-success bg-opacity-10 text-success rounded-3 border border-success border-opacity-25">
+                    <h4 class="fw-bold">Perfectly Centered Box</h4>
+                    <p class="mb-0 small text-secondary">This column is centered horizontally along the main row axis and vertically along the cross axis, regardless of the container's height parameters.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="h4 fw-bold text-dark mb-3">5.2: Column Order Shifting (order-md-1 & order-md-2)</h2>
+        <p class="text-muted small"><strong>Mobile View:</strong> Content Area shows first, Sidebar shows second. <br><strong>Tablet/Desktop View:</strong> Elements swap places; Sidebar moves to the left, Content Area moves to the right.</p>
+        
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-8 order-md-2">
+                <div class="p-4 bg-primary text-white rounded-3 shadow-sm" style="min-height: 180px;">
+                    <h3 class="fw-bold">Primary Content Hub</h3>
+                    <p class="mb-0">On small mobile screens, this primary information content layout renders at the top of the viewport stream so users can read it immediately without scrolling past menus.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4 order-md-1">
+                <div class="p-4 bg-dark text-light rounded-3 shadow-sm" style="min-height: 180px;">
+                    <h3 class="fw-bold text-warning">Sidebar Controls</h3>
+                    <p class="mb-0 text-white-50">On desktop resolutions, this panel snaps cleanly to the left sidebar position due to the order classification engine.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

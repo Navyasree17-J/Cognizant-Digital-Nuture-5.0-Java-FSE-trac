@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flexbox Utilities - Exercise 6</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body class="bg-light text-dark">
+
+    <div class="container my-5">
+        
+        <header class="text-center mb-5">
+            <h1 class="text-primary fw-bold">Exercise 6: Responsive Flexbox Navigation</h1>
+            <p class="text-secondary lead">Using pure flexbox utility classes to shift layout flow seamlessly across breakpoints.</p>
+        </header>
+
+        <nav class="d-flex flex-column flex-md-row justify-content-md-between align-items-center p-3 bg-white border rounded-3 shadow-sm mb-4 gap-3">
+            
+            <div class="d-flex align-items-center">
+                <span class="fs-4 fw-bold text-success">🌱 CommunityHub</span>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row gap-2 gap-md-4 text-center">
+                <a href="#" class="text-decoration-none text-dark fw-semibold px-2 py-1 bg-light rounded bg-opacity-70">Dashboard</a>
+                <a href="#" class="text-decoration-none text-secondary px-2 py-1">Active Events</a>
+                <a href="#" class="text-decoration-none text-secondary px-2 py-1">Volunteer Portal</a>
+                <a href="#" class="text-decoration-none text-secondary px-2 py-1">Help Node</a>
+            </div>
+
+            <div>
+                <button class="btn btn-outline-success btn-sm px-4 fw-semibold">User Login</button>
+            </div>
+
+        </nav>
+
+        <div class="p-4 bg-white border rounded-3 text-center text-muted small">
+            💡 <strong>Testing Instruction:</strong> Shrink your browser width. Notice that on mobile, the logo, navigation links, and login button stack on top of each other. Stretch the window out, and they immediately rearrange into a clean horizontal navigation bar.
+        </div>
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
