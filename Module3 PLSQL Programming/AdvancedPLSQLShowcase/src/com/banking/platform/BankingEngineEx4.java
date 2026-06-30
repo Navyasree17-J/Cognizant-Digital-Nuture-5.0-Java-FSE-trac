@@ -73,9 +73,9 @@ public class BankingEngineEx4 extends BankingEngineEx3 {
         StringBuilder log = new StringBuilder("<b>[Ex 4 - Packaged Procedure Call Log]</b><br>");
         String callSQL = "{CALL Banking_Pkg_Enforce_Audit(?)}";
         
-        try (Connection conn = DriverManager.getConnection(DB_URL);
-             CallableStatement cs = conn.createCall(callSQL)) {
-            
+        String callProcedure = null;
+		try (Connection conn = DriverManager.getConnection(DB_URL);
+        	     CallableStatement cs = conn.prepareCall(callProcedure)) {            
             cs.setInt(1, customerId);
             cs.execute();
             

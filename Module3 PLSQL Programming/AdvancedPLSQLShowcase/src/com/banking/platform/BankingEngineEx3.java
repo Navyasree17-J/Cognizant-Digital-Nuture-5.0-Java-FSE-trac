@@ -67,7 +67,7 @@ public class BankingEngineEx3 extends BankingEngineEx2 {
         String callProcedure = "{CALL Process_Loan_Penalty(?, ?)}";
         
         try (Connection conn = DriverManager.getConnection(DB_URL);
-             CallableStatement cs = conn.createCall(callProcedure)) {
+        	     CallableStatement cs = conn.prepareCall(callProcedure)) {
             
             cs.setInt(1, customerId);
             cs.setDouble(2, penaltyRate);
