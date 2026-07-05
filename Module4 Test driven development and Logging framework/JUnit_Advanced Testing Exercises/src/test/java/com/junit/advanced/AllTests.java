@@ -10,7 +10,9 @@ import org.junit.platform.suite.api.Suite;
 @SelectClasses({
     EvenCheckerTest.class,   // First test class to include
     SampleServiceTest.class,  // Second test class to include
-    OrderedTests.class
+    OrderedTests.class,
+    ExceptionThrowerTest.class,
+    PerformanceTesterTest.class
 })
 public class AllTests {
     // Remains intentionally empty. Acts as the entry engine for JUnit 5 Platform Suite Discovery.
