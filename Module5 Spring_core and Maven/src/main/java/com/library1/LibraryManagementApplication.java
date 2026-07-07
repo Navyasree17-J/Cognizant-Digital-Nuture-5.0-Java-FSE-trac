@@ -5,24 +5,27 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LibraryManagementApplication {
     public static void main(String[] args) {
-        // Load the Spring Application Context
+        // Load context
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         BookService bookService = context.getBean("bookService", BookService.class);
 
-        // Schedule Swing window creation on the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> createAndShowGUI(bookService, context));
     }
 
     private static void createAndShowGUI(BookService bookService, ClassPathXmlApplicationContext context) {
-        JFrame frame = new JFrame("Library Management System (Spring + Swing)");
+        // Dynamically pulling the frame title from Constructor Injection data!
+        JFrame frame = new JFrame(bookService.getLibraryName() + " Dashboard");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(450, 350);
+        frame.setSize(500, 400);
         frame.setLayout(new BorderLayout(10, 10));
+
+        // Header Label showing system capacity limits
+        JLabel headerLabel = new JLabel("System Capacity: " + bookService.getMaxCapacity() + " books maximum.", SwingConstants.CENTER);
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        frame.add(headerLabel, BorderLayout.NORTH);
 
         // Book List Display
         DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -42,22 +45,16 @@ public class LibraryManagementApplication {
         inputPanel.add(addButton, BorderLayout.EAST);
         frame.add(inputPanel, BorderLayout.SOUTH);
 
-        // Action Listener to handle dynamic user input
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String title = bookInputField.getText().trim();
-                if (!title.isEmpty()) {
-                    bookService.registerNewBook(title); // Dynamic backend interaction
-                    listModel.addElement(title);        // Refresh front-end
-                    bookInputField.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Please enter a valid book title.", "Error", JOptionPane.WARNING_MESSAGE);
-                }
+        // Event Handling
+        addButton.addActionListener(e -> {
+            String title = bookInputField.getText().trim();
+            if (!title.isEmpty()) {
+                bookService.registerNewBook(title);
+                listModel.addElement(title);
+                bookInputField.setText("");
             }
         });
 
-        // Add shutdown hook to close Spring Context neatly when closing the window
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -65,7 +62,7 @@ public class LibraryManagementApplication {
             }
         });
 
-        frame.setLocationRelativeTo(null); // Center window
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
