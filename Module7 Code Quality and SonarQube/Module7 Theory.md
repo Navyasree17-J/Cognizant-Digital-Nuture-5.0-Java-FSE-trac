@@ -92,3 +92,77 @@ Add the official SonarQube scanner plugin to the build configuration block:
         </plugins>
     </build>
 </project>
+```
+### B. Executing the Analysis Scanner via CLI
+Run the Maven goal from your terminal while pointing to your SonarQube server instance (or a local instance running via Docker):
+```bash
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=Cognizant-Digital-Nurture-Module6 \
+  -Dsonar.projectName="Java FSE Track - Module 6" \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=sqa_your_generated_security_token_here
+```
+### C. Code Demonstration: Bad Practice vs. SonarQube Compliant Code
+🔴 Defective Code (Fails Quality Profiles & Security Checks)
+This class contains critical code smells, resource leaks, and security risks that SonarQube will flag:
+```java
+package com.cognizant.quality;
+
+import java.sql.*;
+
+public class PaymentProcessor {
+    // 1. CODE SMELL: Magic String used repeatedly instead of a static final constant
+    // 2. SECURITY FAULT: Raw hardcoded credentials left exposed in cleartext source control
+    private String dbUrl = "jdbc:mysql://localhost:3306/bank_db";
+
+    public void processUserPayment(String userId, double amount) throws Exception {
+        // 3. CRITICAL BUG / LEAK: Unclosed connection. If an exception occurs, this connection stays open forever.
+        Connection conn = DriverManager.getConnection(dbUrl, "admin", "SecretPassword123!");
+        
+        // 4. SECURITY VULNERABILITY: SQL Injection risk. Input variables concatenated directly into raw query text.
+        String rawQuery = "UPDATE accounts SET balance = balance - " + amount + " WHERE user_id = '" + userId + "'";
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate(rawQuery);
+        
+        System.out.println("Payment processed successfully."); // 5. CODE SMELL: Direct System.out printing instead of proper logger
+    }
+}
+```
+### 🟢 Compliant Code (Passes Quality Gates Cleanly)
+Refactored using clean coding standards, robust error handling, security abstractions, and logging practices:
+```java
+package com.cognizant.quality;
+
+import lombok.extern.slf4j.Slf4j;
+import java.sql.*;
+
+@Slf4j // Resolves System.out printing code smell by using standard SLF4J loggers
+public class SecurePaymentProcessor {
+
+    // Resolves Magic String smell by externalizing constant references cleanly
+    private static final String UPDATE_ACCOUNT_QUERY = "UPDATE accounts SET balance = balance - ? WHERE user_id = ?";
+
+    public void processUserPayment(String userId, double amount, final String dbUrl, final String dbUser, final String dbPassword) throws SQLException {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Transaction amount must be greater than zero.");
+        }
+
+        // Resolves Resource Leak: Using Java's Try-With-Resources block. 
+        // Connection and PreparedStatement are guaranteed to close cleanly even if a runtime exception hits.
+        try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+             PreparedStatement pstmt = conn.prepareStatement(UPDATE_ACCOUNT_QUERY)) {
+            
+            // Resolves SQL Injection Vulnerability: Parametrizing database inputs safely via type binders
+            pstmt.setDouble(1, amount);
+            pstmt.setString(2, userId);
+            
+            int rowsUpdated = pstmt.executeUpdate();
+            log.info("Transaction complete execution status. Impacted row count: {}", rowsUpdated);
+            
+        } catch (SQLException sqlError) {
+            log.error("Database connection failure encountered while processing checkout for User: {}", userId, sqlError);
+            throw sqlError;
+        }
+    }
+}
+```
