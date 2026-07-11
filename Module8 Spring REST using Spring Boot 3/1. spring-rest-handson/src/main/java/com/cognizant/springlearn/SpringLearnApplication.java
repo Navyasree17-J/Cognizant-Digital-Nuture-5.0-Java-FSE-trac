@@ -17,13 +17,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpringLearnApplication {
 
     public static void main(String[] args) {
-        // Bootstrap Spring Boot 3 with headless mode explicitly turned off for UI rendering
         @SuppressWarnings("unused")
 		ConfigurableApplicationContext context = new SpringApplicationBuilder(SpringLearnApplication.class)
                 .headless(false)
                 .run(args);
 
-        // Mount the Java Swing View
         SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 
@@ -31,44 +29,63 @@ public class SpringLearnApplication {
         Color darkBlue = new Color(44, 62, 80);
         Color lightGray = new Color(240, 244, 248);
 
-        JFrame frame = new JFrame("Hands-on 2: Spring Boot 3 REST & Core XML Studio");
+        JFrame frame = new JFrame("Hands-on 2 & 4: Spring REST & Core IoC Studio");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(750, 420);
+        frame.setSize(850, 480);
         frame.setLayout(new BorderLayout(10, 10));
         frame.getContentPane().setBackground(lightGray);
 
         // Top Banner Title Panel
         JPanel bannerPanel = new JPanel();
         bannerPanel.setBackground(darkBlue);
-        bannerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        JLabel titleLabel = new JLabel("Spring Configuration Bean & REST API Core Tester");
+        bannerPanel.setBorder(new EmptyBorder(12, 10, 12, 10));
+        JLabel titleLabel = new JLabel("Spring Boot 3 Multi-Tasking Rest Endpoint Console Panel");
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         bannerPanel.add(titleLabel);
         frame.add(bannerPanel, BorderLayout.NORTH);
 
-        // Input Control Panel (Left Side)
-        JPanel inputPanel = new JPanel(new GridLayout(4, 1, 5, 10));
+        // Input and Control Panel (Left Side)
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
         inputPanel.setBackground(lightGray);
-        inputPanel.setBorder(new EmptyBorder(25, 25, 25, 15));
-        inputPanel.setPreferredSize(new Dimension(320, 300));
+        inputPanel.setBorder(new EmptyBorder(20, 25, 20, 15));
+        inputPanel.setPreferredSize(new Dimension(360, 400));
 
-        JLabel lblInput = new JLabel("Enter Date String (dd/MM/yyyy):");
-        lblInput.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        // Hands-on 2 Controls
+        JLabel lblSection1 = new JLabel("--- Hands-on 2: SimpleDateFormat Bean ---");
+        lblSection1.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblSection1.setAlignmentX(Component.LEFT_ALIGNMENT);
         
-        // Seed default assignment with the test baseline string from Hands-on 2 instructions
         JTextField txtDateInput = new JTextField("31/12/2018"); 
-        txtDateInput.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        txtDateInput.setMaximumSize(new Dimension(340, 30));
+        txtDateInput.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JButton btnSubmitRest = new JButton("📡 Dispatch REST Request");
-        btnSubmitRest.setBackground(new Color(41, 128, 185));
-        btnSubmitRest.setForeground(Color.WHITE);
-        btnSubmitRest.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        JButton btnSubmitDate = new JButton("📡 Parse Date REST Request");
+        btnSubmitDate.setBackground(new Color(41, 128, 185));
+        btnSubmitDate.setForeground(Color.WHITE);
+        btnSubmitDate.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        inputPanel.add(lblInput);
+        // Hands-on 4 Controls
+        JLabel lblSection2 = new JLabel("--- Hands-on 4: Load Country Bean ---");
+        lblSection2.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblSection2.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        JButton btnGetCountry = new JButton("🌍 Retrieve Country XML Bean");
+        btnGetCountry.setBackground(new Color(39, 174, 96));
+        btnGetCountry.setForeground(Color.WHITE);
+        btnGetCountry.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Assemble Left panel layout
+        inputPanel.add(lblSection1);
+        inputPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         inputPanel.add(txtDateInput);
-        inputPanel.add(new JLabel("")); // Spacer row
-        inputPanel.add(btnSubmitRest);
+        inputPanel.add(Box.createRigidArea(new Dimension(0, 8)));
+        inputPanel.add(btnSubmitDate);
+        inputPanel.add(Box.createRigidArea(new Dimension(0, 35))); // Space spacer separator
+        inputPanel.add(lblSection2);
+        inputPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        inputPanel.add(btnGetCountry);
         frame.add(inputPanel, BorderLayout.WEST);
 
         // Console Response Logger Area (Right Side)
@@ -76,7 +93,7 @@ public class SpringLearnApplication {
         txtOutputConsole.setEditable(false);
         txtOutputConsole.setFont(new Font("Consolas", Font.PLAIN, 13));
         JScrollPane scrollPane = new JScrollPane(txtOutputConsole);
-        scrollPane.setBorder(BorderFactory.createTitledBorder("REST Endpoint Output Stream JSON Response"));
+        scrollPane.setBorder(BorderFactory.createTitledBorder("REST Server Response Output (JSON Layout Stream)"));
 
         JPanel centerContainer = new JPanel(new BorderLayout());
         centerContainer.setBackground(lightGray);
@@ -84,37 +101,50 @@ public class SpringLearnApplication {
         centerContainer.add(scrollPane, BorderLayout.CENTER);
         frame.add(centerContainer, BorderLayout.CENTER);
 
-        // Action Trigger Event Binding
-        btnSubmitRest.addActionListener(e -> {
-            txtOutputConsole.setText("Connecting to local API stream server...");
+        // --- INTERACTION BUTTON LISTENERS ---
+
+        // Action 1: Parse Date (Hands-on 2)
+        btnSubmitDate.addActionListener(e -> {
+            txtOutputConsole.setText("Connecting to server for date parsing...");
             try {
                 String inputDate = txtDateInput.getText().trim();
                 String encodedDate = URLEncoder.encode(inputDate, StandardCharsets.UTF_8.toString());
-                
-                // Construct connection URL directing request to our active REST endpoint
                 URL url = new URL("http://localhost:8085/api/date/parse?dateStr=" + encodedDate);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                        conn.getResponseCode() == 200 ? conn.getInputStream() : conn.getErrorStream()));
-                
-                String inputLine;
-                StringBuilder responseJson = new StringBuilder();
-                while ((inputLine = in.readLine()) != null) {
-                    responseJson.append(inputLine).append("\n");
-                }
-                in.close();
-
-                // Beautify text layout response to terminal dashboard view
-                txtOutputConsole.setText("HTTP Status Code: " + conn.getResponseCode() + "\n\n" + responseJson.toString());
-
+                executeGetRequest(url, txtOutputConsole);
             } catch (Exception ex) {
-                txtOutputConsole.setText("Runtime API failure block:\n" + ex.getMessage());
+                txtOutputConsole.setText("Error matching runtime request:\n" + ex.getMessage());
+            }
+        });
+
+        // Action 2: Load Country Bean (Hands-on 4)
+        btnGetCountry.addActionListener(e -> {
+            txtOutputConsole.setText("Fetching country bean mapping graph from IoC Context...");
+            try {
+                URL url = new URL("http://localhost:8085/api/country");
+                executeGetRequest(url, txtOutputConsole);
+            } catch (Exception ex) {
+                txtOutputConsole.setText("Error matching runtime request:\n" + ex.getMessage());
             }
         });
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private static void executeGetRequest(URL url, JTextArea displayConsole) throws Exception {
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                conn.getResponseCode() == 200 ? conn.getInputStream() : conn.getErrorStream()));
+        
+        String inputLine;
+        StringBuilder responseJson = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            responseJson.append(inputLine).append("\n");
+        }
+        in.close();
+
+        displayConsole.setText("HTTP Status Code: " + conn.getResponseCode() + "\n\n" + responseJson.toString());
     }
 }

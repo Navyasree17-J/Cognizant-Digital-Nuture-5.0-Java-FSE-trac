@@ -10,10 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.cognizant.springlearn.Country;
 
 @RestController
-public class DateController {
+public class DataController {
 
+    /**
+     * Hands-on 2: SimpleDateFormat XML Bean Initialization & REST Request Verification
+     * URL Path: http://localhost:8085/api/date/parse?dateStr=31/12/2018
+     */
     @GetMapping("/api/date/parse")
     public ResponseEntity<Map<String, String>> parseDate(@RequestParam String dateStr) {
         Map<String, String> response = new HashMap<>();
@@ -36,6 +41,35 @@ public class DateController {
         } catch (Exception e) {
             response.put("status", "ERROR");
             response.put("message", "Parsing Failure: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    /**
+     * Hands-on 4: Load Country from Spring Configuration XML & Trace Logs
+     * URL Path: http://localhost:8085/api/country
+     */
+    @GetMapping("/api/country")
+    public ResponseEntity<Map<String, String>> displayCountry() {
+        Map<String, String> response = new HashMap<>();
+        try {
+            // Instantiate ApplicationContext to read country bean config metadata
+            @SuppressWarnings("resource")
+			ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
+            
+            // Retrieve bean reference through getBean() invocation
+            Country country = context.getBean("country", Country.class);
+            
+            response.put("status", "SUCCESS");
+            response.put("bean_id", "country");
+            response.put("country_code", country.getCode());
+            response.put("country_name", country.getName());
+            response.put("toString_output", country.toString());
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            response.put("status", "ERROR");
+            response.put("message", "Failed to resolve bean: " + e.getMessage());
             return ResponseEntity.badRequest().body(response);
         }
     }
