@@ -1,0 +1,123 @@
+body {
+  background-color: #f8fafc;
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #1e293b;
+  transition: all 0.3s ease;
+}
+
+/* Master Layout Container */
+.app-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Dynamic global theme wrappers */
+.app-theme-light { background-color: #f8fafc; color: #1e293b; }
+.app-theme-dark { background-color: #0f172a; color: #f8fafc; }
+
+/* Control Dashboard Header Panel */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  transition: background-color 0.3s;
+}
+
+.app-theme-dark .dashboard-header {
+  background: #1e293b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* Global Master Button Base Setup */
+.btn-toggle {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+/* --- DYNAMIC ACTION BUTTON CONTROLS CONTEXT DRIVEN --- */
+.btn-theme-light {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+.btn-theme-light:hover {
+  background-color: #334155;
+}
+
+.btn-theme-dark {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+.btn-theme-dark:hover {
+  background-color: #7dd3fc;
+}
+
+/* Grid Layout for Employee Cards */
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Card Presentation Base */
+.employee-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.app-theme-dark .employee-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.employee-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.3rem;
+}
+
+.employee-card p {
+  margin: 4px 0;
+  color: #64748b;
+}
+
+.app-theme-dark .employee-card p {
+  color: #94a3b8;
+}
+
+.card-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
