@@ -333,4 +333,197 @@ Once a team completes a few sprints, their Velocity stabilizes, allowing for acc
 | Sprint2 | 30 Points | 28 Points |
 | Sprint3 | 32 Points | 30 Points |
 | Average Velocity | — | 28 Points / Sprint |
+
+
 Planning Takeaway: During Sprint 4 planning, the team should commit to approximately 28 story points from the Product Backlog, pulling in stories based on their relative size.
+---
+
+## 📉 Module: Agile Planning Techniques – Sprint Planning, Velocity & Burndown Charts
+
+Agile planning is an continuous, data-driven activity rather than a one-time upfront event. By combining structured **Sprint Planning** with metrics like **Velocity** and visual tracking tools like **Burndown Charts**, Scrum teams can reliably forecast releases and manage scope without burnout.
+
+---
+
+### 1. The Sprint Planning Process
+
+**Sprint Planning** is the ceremonial event that initiates every new sprint. It establishes the operational scope and functional goals for the upcoming iteration.
+
+#### 🎯 Inputs Required Before Planning Begins
+*   A prioritized **Product Backlog** with refined user stories and acceptance criteria.
+*   The team's historical **Velocity** metrics.
+*   Team **Capacity** details (accounting for upcoming vacations, public holidays, or training).
+*   The current **Increment** and technical architecture constraints.
+
+#### 🛠️ The 3 Core Questions Answered in Sprint Planning
+
+```text
+┌───────────────────────────────────────────────────────────┐
+│                   SPRINT PLANNING EVENT                   │
+├─────────────────────────┬─────────────────────────────────┤
+│ 1. WHY is this Sprint   │ Define the overarching          │
+│    valuable?            │ SPRINT GOAL                     │
+├─────────────────────────┼─────────────────────────────────┤
+│ 2. WHAT can be Done     │ Select items from               │
+│    this Sprint?         │ PRODUCT BACKLOG                 │
+├─────────────────────────┼─────────────────────────────────┤
+│ 3. HOW will the chosen  │ Deconstruct User Stories into   │
+│    work be achieved?    │ SPRINT BACKLOG TASKS            │
+└─────────────────────────┴─────────────────────────────────┘
+```
+
+1. Why is this Sprint valuable? The Product Owner proposes how the product can increase its value in this sprint. The entire Scrum Team collaborates to define a clear Sprint Goal.
+2. What can be Done this Sprint? The developers pull top-priority user stories from the Product Backlog into the Sprint Backlog based on available team capacity and velocity.
+3. How will the chosen work be achieved? For each selected item, developers break down the work into actionable technical tasks (e.g., database schema design, endpoint implementation, unit testing, UI wiring).
+
+### 2. Team Velocity
+Velocity is a metric that measures the amount of work a Scrum team successfully completes during a standard sprint iteration. It is calculated by summing the Story Points of all user stories that meet the team's official Definition of Done (DoD) by the end of the sprint.
+
+⚠️ Important Rule: Partial points are never awarded for half-completed stories. If an 8-point story is 90% finished at sprint close, $0$ points count toward that sprint's velocity. The story carries over to the next sprint.
+
+📊 Calculating Average VelocityTo calculate team velocity for future planning, average the completed points over the last 3 to 5 sprints:
+
+$$\text{Average Velocity} = \frac{\sum (\text{Story Points Completed per Sprint})}{\text{Total Number of Sprints}}$$
+
+Practical Example:
+* Sprint 1: 22 points completed
+* Sprint 2: 28 points completed
+* Sprint 3: 25 points completed
+
+$$\text{Average Velocity} = \frac{22 + 28 + 25}{3} = \mathbf{25\ \text{Points / Sprint}}$$
+
+💡 How Velocity Guides Capacity PlanningVelocity provides a realistic data baseline to prevent overcommitment. If a team’s average velocity is $25$ points, they should pull approximately $25$ points worth of user stories into their next Sprint Backlog—not $40$.
+
+3. Burndown Charts
+
+A Burndown Chart is a visual tool that displays the amount of remaining work in a sprint on a daily basis. It gives teams immediate visibility into whether they are on track to achieve their Sprint Goal.
+
+📉 Key Elements of a Sprint Burndown Chart
+* Horizontal Axis (X-Axis): Represents time (the individual working days of the sprint).
+* Vertical Axis (Y-Axis): Represents the total remaining effort (measured in Story Points or estimated hours).
+* Ideal Guidelines Line: A straight diagonal reference line drawn from total initial story points on Day 1 down to zero on the final day of the sprint.
+* Actual Progress Line: The actual daily tracking of remaining points as tasks meet the Definition of Done.
+
+🔍 Interpreting Burndown Chart Trends
+
+```Plaintext
+Points
+  ▲
+30│ \ 
+  │   \   <-- Ideal Guideline Line
+20│────-●-- Actual Line ABOVE Ideal = Behind Schedule
+  │      \
+10│───────●-- Actual Line BELOW Ideal = Ahead of Schedule
+  │        \
+ 0└─────────┴─────────┴─────────► Time (Days)
+  Day 1    Day 5     Day 10
+```
+
+* Actual Line Above the Ideal Line: The team is behind schedule. Work is burning down slower than expected, indicating potential technical blockers, underestimated complexity, or scope creep.
+* Actual Line Below the Ideal Line: The team is ahead of schedule. Work is being completed faster than anticipated, allowing the team to pull in additional refined items if capacity allows.
+* Flat Line Across Multiple Days: Indicates an active blocker or non-working days where zero tasks are meeting the Definition of Done.
+
+---
+
+## 📝 Module: Agile User Stories & Acceptance Criteria
+
+In Agile development, software requirements are not expressed as long, rigid specification documents. Instead, requirements are captured from the perspective of the end user in lightweight, plain-language descriptions known as **User Stories**. 
+
+---
+
+### 1. What is a User Story?
+
+A **User Story** is an informal, general explanation of a software feature written from the perspective of the end user or customer. Its purpose is to articulate how a piece of work delivers actual business value back to the user.
+
+User stories serve as conversation starters between the Product Owner, developers, and QA engineers, focusing on the *why* and *what* rather than the low-level technical *how*.
+
+---
+
+### 2. Standard User Story Template
+
+To keep user stories user-centric and value-driven, teams follow a standard three-part format:
+
+$$\text{\textbf{As a}} \ [\text{User Role}],\ \text{\textbf{I want}} \ [\text{Goal/Action}],\ \text{\textbf{so that}} \ [\text{Benefit/Value}]$$
+
+#### 🔍 Deconstructing the Template Elements:
+*   **As a `[User Role]`:** *Who are we building this for?* (e.g., Guest Visitor, System Admin, Account Holder).
+*   **I want `[Goal/Action]`:** *What functionality or capability do they need to perform?*
+*   **So that `[Benefit/Value]`:** *Why do they need this? What business problem does it solve?*
+
+##### 💡 Basic Example:
+> **As an** online shopper,  
+> **I want to** save items to a persistent wishlist,  
+> **so that** I can easily review and purchase them later when I am ready.
+
+---
+
+### 3. The INVEST Principle
+
+To ensure user stories are high quality and ready to enter a sprint, teams evaluate them against the **INVEST** framework created by Bill Wake.
+
+If a story fails to meet any of these criteria, it should be refined before sprint commitment:
+
+```text
+  I ──► Independent   (Minimal dependencies on other stories)
+  N ──► Negotiable    (Leaves room for technical collaboration)
+  V ──► Valuable      (Delivers clear, tangible benefit to end users)
+  E ──► Estimable     (Clear enough for developers to size using Story Points)
+  S ──► Small         (Fits comfortably within a single sprint iteration)
+  T ──► Testable      (Has clear criteria to verify functionality)
+```
+* **I – Independent:** Stories should be decoupled so they can be developed, tested, and shipped in any order without blocking each other.
+
+* **N – Negotiable:** Stories are not rigid contracts. The technical execution details are negotiated between developers and the Product Owner during planning.
+
+* **V – Valuable:** Every story must yield measurable user or business value. Pure technical tasks should be framed around their end-value.
+
+* **E – Estimable:** The team must understand the scope well enough to estimate its relative effort/complexity using Story Points.
+
+* **S – Small:** Stories should be small enough to be completed within a few days, ensuring multiple stories can finish within a single sprint.
+
+* **T – Testable:** A story must have clear verification rules so QA automation can confirm whether it works properly.
+
+4. Acceptance Criteria & The Given-When-Then Format
+While the user story defines the feature's goal, Acceptance Criteria define the boundary conditions. They are the explicit conditions that must be met for a user story to be declared completed and accepted by the Product Owner.
+
+🥒 The Given-When-Then Structure (Behavior-Driven Development / BDD)
+Writing criteria using the Given-When-Then format eliminates ambiguity and converts directly into automated test scripts (e.g., Cucumber or Behave).
+
+* Given [`Initial Context/Precondition`]: Sets up the starting state of the system.
+
+* When [`Action/Trigger Event`]: Describes the specific user interaction or event.
+
+* Then [`Expected Result/Outcome`]: Defines the verifiable system response.
+
+💻 Practical Blueprint: Complete User Story in Action
+Here is an example showing how a raw feature request is converted into an actionable user story ready for sprint refinement:
+
+Feature: Customer Password Reset Lifecycle
+User Story Definition
+```Plaintext
+Title: Self-Service Password Reset
+
+AS A registered bank user,
+I WANT TO reset my forgotten password via an automated email link,
+SO THAT I can regain access to my account securely without calling customer support.
+```
+
+Acceptance Criteria (Given-When-Then)
+```Gherkin
+Scenario 1: Successful Password Reset Link Request
+  GIVEN a registered user is on the account login page
+  WHEN they click "Forgot Password" and submit a valid, registered email address
+  THEN the system sends a secure password reset email within 60 seconds
+  AND displays a confirmation message: "Reset link dispatched to your inbox."
+
+Scenario 2: Password Reset Link Expiration
+  GIVEN a user receives a valid password reset email link
+  WHEN they click the link more than 15 minutes after generation
+  THEN the system displays an error message: "Security token expired."
+  AND prompts them to request a new reset link.
+
+Scenario 3: Non-Registered Email Handling (Security Rule)
+  GIVEN a user is on the account login page
+  WHEN they submit an email address that does NOT exist in the user database
+  THEN the system displays the generic message: "If an account exists, a link has been sent."
+  AND does NOT reveal whether the user email address exists in the system.
+```
