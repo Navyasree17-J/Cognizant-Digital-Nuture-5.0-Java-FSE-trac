@@ -1,0 +1,7 @@
+<!-- Step 20 & 21: Render course fields and trigger emit on button click -->
+<div style="border: 1px solid #ccc; padding: 12px; margin: 8px; border-radius: 6px;">
+  <h3>{{ course.name }} ({{ course.code }})</h3>
+  <p>Course ID: {{ course.id }}</p>
+  <p>Credits: {{ course.credits }}</p>
+  <button (click)="onEnroll()">Enroll</button>
+</div>

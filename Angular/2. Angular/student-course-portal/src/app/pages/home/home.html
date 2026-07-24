@@ -1,0 +1,23 @@
+<!-- Task 1: Interpolation -->
+<h1>{{ portalName }}</h1>
+
+<!-- Task 1: Property Binding & Event Binding -->
+<button [disabled]="!isPortalActive" (click)="onEnrollClick()">
+  Enroll Now
+</button>
+<p>{{ message }}</p>
+
+<!-- Task 1: Two-Way Binding -->
+<br />
+<input [(ngModel)]="searchTerm" placeholder="Search courses..." />
+<p>Searching for: {{ searchTerm }}</p>
+
+<!-- Task 1: Step 15 Explanation Comment -->
+<!-- 
+  PROPERTY BINDING [property]:
+  One-way data binding (Component -> DOM). Updates the view when the TypeScript property changes.
+
+  TWO-WAY BINDING [(ngModel)]:
+  Two-way data binding (DOM <-> Component). Keeps the view and TypeScript property synced in real-time.
+  Shorthand for: [ngModel]="searchTerm" (ngModelChange)="searchTerm = $event"
+-->

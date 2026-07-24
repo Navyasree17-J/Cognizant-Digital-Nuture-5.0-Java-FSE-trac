@@ -1,0 +1,13 @@
+<h2>Course List</h2>
+
+<!-- Step 22: Loop through courses array and render child cards -->
+<app-course-card 
+  *ngFor="let item of courses" 
+  [course]="item" 
+  (enrollRequested)="onEnroll($event)">
+</app-course-card>
+
+<!-- Step 24: Display selected course ID below the list -->
+<div style="margin-top: 16px; font-weight: bold;">
+  <p>Selected course ID: {{ selectedCourseId }}</p>
+</div>
